@@ -7,7 +7,7 @@ import google.generativeai as genai
 
 app = FastAPI()
 
-# Enable local data stream requests between frontend and backend servers
+# THE FIX: FORCE FULL ACCESS HEADERS SO YOUR BROWSER UNBLOCKS VERCEL
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -42,10 +42,9 @@ async def analyze_image(
         img.save(buffer, format="JPEG", quality=75)
         optimized_bytes = buffer.getvalue()
         
-        # WE SWITCH TO THE LATEST HIGH-POWER ENGINE MODEL
+        # Target the active high-power engine model string configuration
         model = genai.GenerativeModel('gemini-3.6-flash')
         
-        # UPDATED PROMPT: REMOVED LIMITS AND DEMANDED EXHAUSTIVE DETECTION
         instruction = (
             "Deconstruct this entire image canvas comprehensively. Identify the maximum possible "
             "number of components, distinct objects, specific accessories, structural parts, "
