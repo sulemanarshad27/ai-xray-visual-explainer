@@ -233,7 +233,7 @@
             formData.append("file", file);
 
             try {
-               const response = await fetch("http://localhost:8005/api/analyze", {
+               const response = await fetch("https://pythonanywhere.com", {
                     method: "POST",
                     headers: { "X-API-Key": keyToken },
                     body: formData
